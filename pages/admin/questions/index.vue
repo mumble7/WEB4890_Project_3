@@ -15,16 +15,18 @@
             >
               <template v-slot:items="props">
                 <td class="text-xs-left">{{ props.item.name }}</td>
-                <td class="text-xs-left">{{ props.item.option1 }}</td>
-                <td class="text-xs-left">{{ props.item.option2 }}</td>
-                <td class="text-xs-left">{{ props.item.option3 }}</td>
-                <td class="text-xs-left">{{ props.item.option4 }}</td>
-                <!-- <td class="text-xs-center">
-                  <v-icon small @click="destroy(props.item.id)">delete</v-icon>
-                  <n-link :to="`/admin/questions/${props.item.id}`">
-                    <v-icon small color="orange">edit</v-icon>
-                  </n-link>
-                </td> -->
+
+                <td class="text-xs-left">{{ props.item.sponser }}</td>
+                <td class="text-xs-left">{{ props.item.bike }}</td>
+                <td class="text-xs-left">{{ props.item.Maribor }}</td>
+                <td class="text-xs-left">{{ props.item.Fort_William }}</td>
+                <td class="text-xs-left">{{ props.item.Leogang }}</td>
+                <td class="text-xs-left">{{ props.item.Les_Gets }}</td>
+                <td class="text-xs-left">{{ props.item.Val_di_Sole }}</td>
+                <td class="text-xs-left">{{ props.item.Lenzerheide }}</td>
+                <td class="text-xs-left">{{ props.item.Snowshoe }}</td>
+                <td class="text-xs-left">{{ props.item.worldchamps }}</td>
+                <td class="text-xs-left">{{ props.item.overall }}</td>
               </template>
             </v-data-table>
           </v-card-text>
@@ -40,18 +42,18 @@ export default {
   data() {
     return {
       headers: [
-        { text: 'Athlete Name', value: 'name' }
-        // { text: 'Primary Sponser', value: 'sponser' },
-        // { text: 'Bike', value: 'bike' },
-        // { text: 'Maribor', value: 'Maribor' },
-        // { text: 'Fort William', value: 'Fort William' },
-        // { text: 'Leogang', value: 'Leogang' },
-        // { text: 'Les Gets', value: 'Les Gets' },
-        // { text: 'Val di Sole', value: 'Val di Sole' },
-        // { text: 'Lenzerheide', value: 'Lenzerheide' },
-        // { text: 'Snowshoe', value: 'Snowshoe' },
-        // { text: 'World Champs: Mont-Sainte-Anne', value: 'worldchamps' },
-        // { text: 'Overall', value: 'overall' }
+        { text: 'Athlete Name', value: 'name' },
+        { text: 'Primary Sponser', value: 'sponser' },
+        { text: 'Bike', value: 'bike' },
+        { text: 'Maribor', value: 'Maribor' },
+        { text: 'Fort William', value: 'Fort William' },
+        { text: 'Leogang', value: 'Leogang' },
+        { text: 'Les Gets', value: 'Les Gets' },
+        { text: 'Val di Sole', value: 'Val di Sole' },
+        { text: 'Lenzerheide', value: 'Lenzerheide' },
+        { text: 'Snowshoe', value: 'Snowshoe' },
+        { text: 'World Champs: Mont-Sainte-Anne', value: 'worldchamps' },
+        { text: 'Overall', value: 'overall' }
       ],
       questions: []
     }

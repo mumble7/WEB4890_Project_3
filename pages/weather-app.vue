@@ -64,13 +64,35 @@
         ></v-text-field>
       </v-form>
     </v-flex>
+    <GChart
+      :settings="{ packages: ['bar'] }"
+      :data="chartData"
+      :options="chartOptions"
+      :create-chart="(el, google) => new google.charts.Bar(el)"
+      @ready="onChartReady"
+    />
   </v-container>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import { GChart } from 'vue-google-charts'
 
 export default {
+  // graph
+  components: {
+    GChart
+  },
+  data(actions) {
+    return {
+      chartsLib: null,
+      chartData: [
+        ['Temperature', 'Min temp(f)', 'Max temp(f)', 'Average Temp(f)'],
+        ['Today', 300, 400, 200]
+      ]
+    }
+  },
+
   // FINAL
   computed: {
     ...mapState('weather', ['weather']),
@@ -90,18 +112,32 @@ export default {
         this.$store.commit('weather/setState', value)
       }
     },
-    country: {
+    temperatureMax: {
       get() {
-        return this.$store.state.weather.country
+        return this.$store.state.weather.main.temp_max
       },
       set(value) {
-        this.$store.commit('weather/setCountry', value)
+        this.$store.commit('weather/setTempMax', value)
       }
     },
     icon() {
       return this.weather.weather
         ? `https://openweathermap.org/img/w/${this.weather.weather[0].icon}.png`
         : ''
+    },
+    // GRAPH
+    chartOptions() {
+      if (!this.chartsLib) return null
+      return this.chartsLib.charts.Bar.convertOptions({
+        chart: {
+          title: 'Todays Weather',
+          subtitle: 'A quick example of temperatures graphed'
+        },
+        bars: 'horizontal', // Required for Material Bar Charts.
+        hAxis: { format: 'decimal' },
+        height: 400,
+        colors: ['#1b9e77', '#d95f02', '#7570b3']
+      })
     }
   },
   fetch({ store, $axios }) {
@@ -113,6 +149,10 @@ export default {
     },
     temp() {
       return Math.round(this.weather.main.temp)
+    },
+    // GRAPH
+    onChartReady(chart, google) {
+      this.chartsLib = google
     }
   }
 }

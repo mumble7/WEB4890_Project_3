@@ -4,7 +4,9 @@ require('dotenv').config()
 
 module.exports = {
   mode: 'universal',
-
+  generate: {
+    fallback: true
+  },
   /*
    ** Headers of the page
    */
@@ -41,8 +43,10 @@ module.exports = {
   plugins: [
     '@/plugins/vuetify',
     '@/plugins/ability',
+
     '@/plugins/axios',
-    {src:'@/plugins/notify',ssr:false}
+
+    { src: '@/plugins/notify', ssr: false }
   ],
 
   /*

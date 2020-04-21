@@ -77,14 +77,14 @@ export default {
     }
   },
   created() {
-    this.fetchAthletes()
+    this.fetchQuestions()
   },
   methods: {
-    fetchAthletes() {
+    fetchQuestions() {
       this.$axios.get(`/athletes.json`).then(
         (res) =>
-          (this.athletes = Object.keys(res.data).map((key, index) => {
-            res.data[key].id = key
+          (this.questions = Object.keys(res.data).map((key, index) => {
+            res.data[key] = key
             return res.data[key]
           }))
       )

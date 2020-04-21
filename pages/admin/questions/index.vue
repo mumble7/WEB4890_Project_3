@@ -58,7 +58,7 @@ export default {
   },
   methods: {
     fetchQuestions() {
-      this.$axios.get(`/questions.json`).then(
+      this.$axios.get(`/athletes.json`).then(
         (res) =>
           (this.questions = Object.keys(res.data).map((key, index) => {
             res.data[key].id = key
@@ -67,22 +67,22 @@ export default {
       )
     },
     destroy(key) {
-      this.$axios.delete(`/questions/${key}.json`).then((res) => {
+      this.$axios.delete(`/athletes/${key}.json`).then((res) => {
         this.fetchAnswer(key)
       })
-    },
-    fetchAnswer(key) {
-      this.$axios
-        .get(
-          `/answers.json?orderBy="question_id"&startAt="${key}"&endAt="${key}"`
-        )
-        .then((res) => this.destroyAnswer(key, Object.keys(res.data)[0]))
-    },
-    destroyAnswer(key, answerId) {
-      this.$axios
-        .delete(`/answers/${answerId}.json`)
-        .then((res) => this.questions.splice(this.questions[key]))
     }
+    // fetchAnswer(key) {
+    //   this.$axios
+    //     .get(
+    //       `/answers.json?orderBy="question_id"&startAt="${key}"&endAt="${key}"`
+    //     )
+    //     .then((res) => this.destroyAnswer(key, Object.keys(res.data)[0]))
+    // },
+    // destroyAnswer(key, answerId) {
+    //   this.$axios
+    //     .delete(`/answers/${answerId}.json`)
+    //     .then((res) => this.questions.splice(this.questions[key]))
+    // }
   }
 }
 </script>

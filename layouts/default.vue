@@ -16,9 +16,9 @@
           <v-btn flat>
             <n-link to="/quiz">Quiz App</n-link>
           </v-btn>
-          <!-- <v-btn v-if="$auth()" flat @click="logout">
+          <v-btn v-if="$auth()" flat @click="logout">
             Logout
-          </v-btn> -->
+          </v-btn>
         </v-toolbar-items>
       </v-toolbar>
       <transition>
